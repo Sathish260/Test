@@ -22,8 +22,12 @@ public class MakeMyTripAutomation {
             Thread.sleep(2000);
             driver.findElement(By.className("close")).click();
             // Step 2: Close the Sweet Alert.
+            driver.findElement(By.xpath("//li[text()='MyBiz Account']")).click();
+		    driver.findElement(By.name("username")).sendKeys("ram26@gmail.com");
+		    driver.findElement(By.xpath("//span[text()='CONTINUE']")).click();
+		    driver.findElement(By.xpath("//span[@class='mybizLoginClose']")).click();
+		    driver.findElement(By.xpath("//span[@data-cy='BizRequestCallBackForm_164']")).click();
           
-            driver.findElement(By.xpath("//div[@class='imageSlideContainer']")).click();
             // Step 3: Click on the website logo.
             driver.findElement(By.className("//img[@alt='Make My Trip]'")).click();
 
@@ -50,12 +54,10 @@ public class MakeMyTripAutomation {
             driver.findElement(By.className("dest-city-container")).click();
 
             // Step 9: Pick a date from the calendar.
-            driver.findElement(By.xpath("//span[text()='Departure Date']")).click();
-
+            driver.findElement(By.xpath("(//p[text()='23'])[2]")).click();
+        
             // Step 10: Adjust the number of adults to the maximum allowed.
-            WebElement adultsCount = driver.findElement(By.id("adults"));
-            adultsCount.clear();
-            adultsCount.sendKeys("5");
+           driver.findElement(By.xpath("//div[@data-testid='adult-increment-counter']")).click();
 
             // Step 11: Click on the apply button.
             driver.findElement(By.xpath("//button[text()='APPLY']")).click();
