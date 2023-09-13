@@ -24,7 +24,7 @@ public class tataclic {
 		
 		EdgeDriver driver=new EdgeDriver(options);
 		
-		
+		//Lanuch the browser
 		driver.get("https://www.tatacliq.com/");
 		//maximize the browser
 		driver.manage().window().maximize();
@@ -35,18 +35,23 @@ public class tataclic {
 		WebElement brands = driver.findElement(By.xpath("//div[text()='Brands']"));
 		Actions builder =new Actions(driver);
 		builder.moveToElement(brands).perform();
+		
+		
+		//click Watches &Accessories 
 		WebElement brand = driver.findElement(By.xpath("//div[text()='Watches & Accessories']"));
-		
 		builder.moveToElement(brand).perform();
-		driver.findElement(By.xpath("//div[text()='Casio']")).click();
-
-		WebElement sort = driver.findElement(By.xpath("//select[@class='SelectBoxDesktop__hideSelect']"));
 		
+		//Choose the first option from the Brand dispaly
+		driver.findElement(By.xpath("//div[text()='Casio']")).click();
+       
+		//Select sort by-New Arrivals
+		WebElement sort = driver.findElement(By.xpath("//select[@class='SelectBoxDesktop__hideSelect']"));
 		Select sortdd = new Select(sort);
-
-		sortdd.selectByVisibleText("Popularity");
-
-		Thread.sleep(2880);
+		sortdd.selectByVisibleText("New Arrivals");
+      
+		//Click Men check box
+		driver.findElement(By.xpath("//div[text()='Men']")).click();
+		Thread.sleep(2000);
         
 		driver.findElement(By.xpath("//div[@class='CheckBox_base'])[1]")).click();
         //Print all price of watches(take only numbers)
