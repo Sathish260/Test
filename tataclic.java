@@ -36,35 +36,39 @@ public class tataclic {
 		Actions builder =new Actions(driver);
 		builder.moveToElement(brands).perform();
 		
-		
 		//click Watches &Accessories 
 		WebElement brand = driver.findElement(By.xpath("//div[text()='Watches & Accessories']"));
 		builder.moveToElement(brand).perform();
 		
-		//Choose the first option from the Brand dispaly
-		driver.findElement(By.xpath("//div[text()='Casio']")).click();
+		//Choose the first option from the Brand display
+	    driver.findElement(By.xpath("//div[text()='Casio']")).click();
        
 		//Select sort by-New Arrivals
 		WebElement sort = driver.findElement(By.xpath("//select[@class='SelectBoxDesktop__hideSelect']"));
-		Select sortdd = new Select(sort);
-		sortdd.selectByVisibleText("New Arrivals");
-      
+		Select select = new Select(sort);
+		select.selectByVisibleText("New Arrivals");
+		Thread.sleep(2000);
 		//Click Men check box
 		driver.findElement(By.xpath("//div[text()='Men']")).click();
 		Thread.sleep(2000);
         
-		driver.findElement(By.xpath("//div[@class='CheckBox_base'])[1]")).click();
+		driver.findElement(By.xpath("(//div[@class='CheckBox__base'])[1]")).click();
         //Print all price of watches(take only numbers)
-		List<WebElement> table = driver.findElements(By.xpath("//div[@class='ProductDescription__priceHolder']//h3"));
-		for (int i=0; i<table.size() ; i++) {
-		System.out.println(table.get(i).getText());
-			
-		String parentWindow = driver.getWindowHandle();
-		 //click the second loaded result
-        driver.findElement(By.xpath("(//div[@class='ProductModule__imageAndDescriptionWrapper'])[2]")).click();
-        //Handle the window and Print the price of the watch
-        Set<String> childWindow= driver.getWindowHandles();
+		List<WebElement> price = driver.findElements(By.xpath("//div[@class='ProductDescription__priceHolder']/h3"));
+		for (int i = 0; i < price.size(); i++) {
+			System.out.println(price.get(i).getText());
+		}
+		
+		String Price = driver.findElement(By.xpath("(//div[@class='ProductDescription__priceHolder']/h3)[1]")).getText();
+		
+		//click the second loaded result
+		driver.findElement(By.xpath("(//div[@class='ProductModule__dummyDiv'])[2]")).click();
+		
+		Set<String> childWindow= driver.getWindowHandles();
         System.out.println("childWindow" + childWindow);
+        
+        String Watchs = driver.findElement(By.xpath("//div[@class='ProductDetailsMainCard__price']/h3")).getText();
+		System.out.println(Watchs);
         //Check the bag count
         driver.findElement(By.xpath("//span[text()='ADD TO BAG']")).click();
         //Click the cart bag
@@ -81,4 +85,4 @@ public class tataclic {
     	driver.quit();
 		}
 }
-}
+
